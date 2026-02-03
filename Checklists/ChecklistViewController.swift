@@ -78,22 +78,23 @@ class ChecklistViewController: UITableViewController {
             } else {
                 cell.accessoryType = .none
             }
-        tableView.deselectRow(at: indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+
     }
 
-}
+    struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
 
-struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
+        let builder: () -> ViewController
 
-    let builder: () -> ViewController
+        init(_ builder: @escaping () -> ViewController) {
+            self.builder = builder
+        }
 
-    init(_ builder: @escaping () -> ViewController) {
-        self.builder = builder
+        func makeUIViewController(context: Context) -> ViewController {
+            builder()
+        }
+
+        func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
     }
-
-    func makeUIViewController(context: Context) -> ViewController {
-        builder()
-    }
-
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
 }
