@@ -9,11 +9,11 @@ import UIKit
 import SwiftUI
 
 class ChecklistViewController: UITableViewController {
-    var row0checked = false
-    var row1checked = false
-    var row2checked = false
-    var row3checked = false
-    var row4checked = false
+    var row0item = ChecklistItem()
+    var row1item = ChecklistItem()
+    var row2item = ChecklistItem()
+    var row3item = ChecklistItem()
+    var row4item = ChecklistItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
