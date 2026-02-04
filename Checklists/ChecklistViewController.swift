@@ -47,11 +47,37 @@ class ChecklistViewController: UITableViewController {
             label.text = "Eat ice cream"
         }
 
+        configureCheckmark(for: cell, at: indexPath)
         return cell
     }
 
+    func configureCheckmark(
+        for cell: UITableViewCell,
+        at indexPath: IndexPath
+    ) {
+        var isChecked = false
+        if indexPath.row == 0 {
+            isChecked = row0checked
+        } else if indexPath.row == 1 {
+            isChecked = row1checked
+        } else if indexPath.row == 2 {
+            isChecked = row2checked
+        } else if indexPath.row == 3 {
+            isChecked = row3checked
+        } else if indexPath.row == 4 {
+            isChecked = row4checked
+        }
+
+        if isChecked {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+    }
+
     override func tableView(
-        _ tableView: UITableView,
+        _
+        tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
         if let cell = tableView.cellForRow(at: indexPath) {
@@ -73,28 +99,8 @@ class ChecklistViewController: UITableViewController {
                 isChecked = row4checked
             }
 
-            if isChecked {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
-            tableView.deselectRow(at: indexPath, animated: true)
+            configureCheckmark(for: cell, at: indexPath)
         }
-
-    }
-
-    struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
-
-        let builder: () -> ViewController
-
-        init(_ builder: @escaping () -> ViewController) {
-            self.builder = builder
-        }
-
-        func makeUIViewController(context: Context) -> ViewController {
-            builder()
-        }
-
-        func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
