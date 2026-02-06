@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="G1M-Fi-5pL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="481-OO-v3L">
                             <connections>
-                                <action selector="addItem" destination="pbp-KY-dKU" id="L6E-gG-sA0"/>
+                                <segue destination="yJy-tt-WuZ" kind="show" id="n7b-Pb-o7K"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -73,6 +73,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p37-fu-CpR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1324" y="-45.42728635682159"/>
+        </scene>
+        <!--Add Item-->
+        <scene sceneID="ZZC-FC-6pG">
+            <objects>
+                <tableViewController id="yJy-tt-WuZ" customClass="AddItemViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="1SQ-Xq-sLD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="aIZ-GZ-6Nn">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="oIY-kY-AFA">
+                                        <rect key="frame" x="0.0" y="18" width="375" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oIY-kY-AFA" id="9Si-dc-mfR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u5F-hr-tmL">
+                                                    <rect key="frame" x="8" y="8" width="360" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="u5F-hr-tmL" firstAttribute="leading" secondItem="9Si-dc-mfR" secondAttribute="leading" constant="8" id="Pqn-Ns-I7D"/>
+                                                <constraint firstItem="u5F-hr-tmL" firstAttribute="top" secondItem="9Si-dc-mfR" secondAttribute="top" constant="8" id="VVM-P9-UUu"/>
+                                                <constraint firstAttribute="bottom" secondItem="u5F-hr-tmL" secondAttribute="bottom" constant="9" id="dU5-zA-HHV"/>
+                                                <constraint firstAttribute="trailing" secondItem="u5F-hr-tmL" secondAttribute="trailing" constant="7" id="hNP-Ou-5bW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="yJy-tt-WuZ" id="4io-FY-GeF"/>
+                            <outlet property="delegate" destination="yJy-tt-WuZ" id="pYB-ct-yWn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Item" largeTitleDisplayMode="never" id="Ck8-Ag-xzp">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E8H-fd-yFk">
+                            <connections>
+                                <action selector="cancel" destination="yJy-tt-WuZ" id="hpR-Vq-Q0f"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="A9O-gm-yGY">
+                            <connections>
+                                <action selector="done" destination="yJy-tt-WuZ" id="PVc-QZ-jt7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MwS-L0-neE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="-45.42728635682159"/>
         </scene>
     </scenes>
     <resources>
