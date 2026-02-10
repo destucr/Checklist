@@ -8,8 +8,20 @@
 import UIKit
 import SwiftUI
 
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
+
    var items = [ChecklistItem]()
+
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+
+    func addItemViewController(
+        _ controller: AddItemViewController,
+        didFinishAddingItem item: ChecklistItem
+    ) {
+        navigationController?.popViewController(animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
