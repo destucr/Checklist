@@ -7,20 +7,25 @@
 
 import UIKit
 
-protocol AddItemViewControllerDelegate: AnyObject {
-    func addItemViewControllerDidCancel(
-        _ controller: AddItemViewController
+protocol ItemDetailViewControllerDelegate: AnyObject {
+    func itemDetailViewControllerDidCancel(
+        _ controller: ItemDetailViewController
     )
 
-    func addItemViewController(
-        _ controller: AddItemViewController,
+    func itemDetailViewController(
+        _ controller: ItemDetailViewController,
         didFinishAddingItem item: ChecklistItem
+    )
+
+    func itemDetailViewController(
+        _ controller: ItemDetailViewController,
+        didFinishEditing item: ChecklistItem
     )
 }
 
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate {
-    weak var delegate: AddItemViewControllerDelegate?
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
+    weak var delegate: ItemDetailViewControllerDelegate?
     var itemToEdit: ChecklistItem?
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
@@ -33,6 +38,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         if let itemToEdit = itemToEdit {
             title = "Edit Item"
             textField.text = itemToEdit.text
+            doneBarButton.isEnabled = true
         }
 
         navigationItem.largeTitleDisplayMode = .never
@@ -44,15 +50,19 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     }
 
     @IBAction func cancel() {
-        delegate?.addItemViewControllerDidCancel(self)
+        delegate?.itemDetailViewControllerDidCancel(self)
     }
 
+    // How it can diferentiate the item?
     @IBAction func done() {
-        let item = ChecklistItem()
-        item.text = textField.text!
-
-        print("contents of the text field: \(textField.text!)")
-        delegate?.addItemViewController(self, didFinishAddingItem: item)
+        if let item = itemToEdit {
+            item.text = textField.text!
+            delegate?.itemDetailViewController(self, didFinishEditing: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = textField.text!
+            delegate?.itemDetailViewController(self, didFinishAddingItem: item)
+        }
     }
 
     override func tableView(
